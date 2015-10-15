@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BibliotecaClases;
+using System.Data.Objects;
 
 namespace Data_Access_Layer
 {
     public class ConsultasDAL
     {
-        public static List<Producto> ConsultarPorNombre(int id_bodega, String nombreProductoBuscado)
+        public static List<Producto> ConsultarPorNombre(int idBodega, String nombreProductoBuscado)
         {
+            List<Producto> productosEncontrandos = new List<Producto>();
             var context = new BotilleriaEntities();
+            var matching = context.BodegaLocals.Where(b => b.id_bodega == idBodega);
             var matchings = from c in context.Bebidas where c.nombre_producto == nombreProductoBuscado select c;
+            if(matching != null){
+                //IQueryable<Bebida> match = context.Bebidas.Where(c => c.nombre_producto == nombreProductoBuscado).Where(c => c.BodegaLocals. == idBodega);
+                
+            } 
+                
+            
 
         }
 
         public static List<Producto> ConsultarPorNombre(String nombreProductoBuscado)
         {
             var context = new BotilleriaEntities();
-            var matchings = from c in context.Bebidas where c.nombre_producto == nombreProductoBuscado select c;
+            ObjectSet<Bebida> matchings = from c in context.Bebidas where c.nombre_producto == nombreProductoBuscado select c;
 
         }
         //public static List<Producto> ConsultarStockDeMarca(String marcaProductoBuscado)
