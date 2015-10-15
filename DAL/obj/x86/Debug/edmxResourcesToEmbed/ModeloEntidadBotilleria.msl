@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebBotilleriaDBModelStoreContainer" CdmEntityContainer="WebBotilleriaDBEntities">
+    <EntitySetMapping Name="Bebida">
+      <EntityTypeMapping TypeName="WebBotilleriaDBModel.Bebida">
+        <MappingFragment StoreEntitySet="Bebida">
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="grados_alcohol" ColumnName="grados_alcohol" />
+          <ScalarProperty Name="volumen_litros" ColumnName="volumen_litros" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BodegaLocal">
+      <EntityTypeMapping TypeName="WebBotilleriaDBModel.BodegaLocal">
+        <MappingFragment StoreEntitySet="BodegaLocal">
+          <ScalarProperty Name="id_bodega" ColumnName="id_bodega" />
+          <ScalarProperty Name="producto_fk" ColumnName="producto_fk" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_venta">
+      <EntityTypeMapping TypeName="WebBotilleriaDBModel.detalle_venta">
+        <MappingFragment StoreEntitySet="detalle_venta">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_producto_fk" ColumnName="id_producto_fk" />
+          <ScalarProperty Name="id_venta_fk" ColumnName="id_venta_fk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="WebBotilleriaDBModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+          <ScalarProperty Name="contrasenja_usuario" ColumnName="contrasenja_usuario" />
+          <ScalarProperty Name="esAdministrador" ColumnName="esAdministrador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta">
+      <EntityTypeMapping TypeName="WebBotilleriaDBModel.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="total_precio" ColumnName="total_precio" />
+          <ScalarProperty Name="id_usuario_fk" ColumnName="id_usuario_fk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

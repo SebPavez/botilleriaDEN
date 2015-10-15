@@ -1,0 +1,5 @@
+C:\Users\cetecom\Desktop\Web_Botilleria01102015\DAL\bin\Debug\DAL.exe.config
+C:\Users\cetecom\Desktop\Web_Botilleria01102015\DAL\bin\Debug\DAL.exe
+C:\Users\cetecom\Desktop\Web_Botilleria01102015\DAL\bin\Debug\DAL.pdb
+C:\Users\cetecom\Desktop\Web_Botilleria01102015\DAL\obj\x86\Debug\DAL.exe
+C:\Users\cetecom\Desktop\Web_Botilleria01102015\DAL\obj\x86\Debug\DAL.pdb
