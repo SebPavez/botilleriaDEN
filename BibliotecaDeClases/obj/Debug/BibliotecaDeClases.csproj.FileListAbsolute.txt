@@ -28,3 +28,12 @@ C:\Users\cetecom\Desktop\Web_Botilleria01102015\BibliotecaDeClases\bin\Debug\Bib
 C:\Users\cetecom\Desktop\Web_Botilleria01102015\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.csprojResolveAssemblyReference.cache
 C:\Users\cetecom\Desktop\Web_Botilleria01102015\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.dll
 C:\Users\cetecom\Desktop\Web_Botilleria01102015\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.pdb
+C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\BibliotecaDeClases\bin\Debug\BibliotecaDeClases.dll
+C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\BibliotecaDeClases\bin\Debug\BibliotecaDeClases.pdb
+C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.dll
+C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.pdb
+C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\bin\Debug\BibliotecaDeClases.dll
+C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\bin\Debug\BibliotecaDeClases.pdb
+C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.dll
+C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.pdb

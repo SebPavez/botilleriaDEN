@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BibliotecaDeClases
+namespace BibliotecaClases
 {
     [Serializable]
     public class Venta
     {
-        #region Propiedades Venta
+        #region IDVenta
         private String strIdVenta;
 
         public String IdVenta
@@ -16,24 +16,19 @@ namespace BibliotecaDeClases
             get { return strIdVenta; }
             set { strIdVenta = value; }
         }
+        #endregion IDVenta
+        #region listaProductos
+        private List<Bebida> lstProductos;
 
-        private List<Producto> lstProductos;
-
-        public List<Producto> Productos
+        public List<Bebida> Productos
         {
             get { return lstProductos; }
             set { lstProductos = value; }
         }
+        #endregion listaProductos
+        #region FechaVenta
+        public DateTime Fecha { get; set; }
+        #endregion FechaVenta
 
-        public DateTime Fecha { get; set; } 
-        #endregion
-
-
-        public Boolean GenerarVenta()
-        {
-            //modificar
-            //Este metodo tomara los datos que el usuario agrega al carro e imprimira una boleta con los datos, precio, iva, etc.
-            return true;
-        }
     }
 }
