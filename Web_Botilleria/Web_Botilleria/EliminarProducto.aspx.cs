@@ -21,7 +21,7 @@ namespace Web_Botilleria
         {
             try
             {
-                Producto producto = new Producto();
+                Bebida producto = new Bebida();
                 if (producto.EliminarProducto(txbIdEliminar.Text.Trim()))
                     lblSalidaEliminar.Text = "Producto con ID " + txbIdEliminar.Text.Trim() + " eliminado!";
                 else

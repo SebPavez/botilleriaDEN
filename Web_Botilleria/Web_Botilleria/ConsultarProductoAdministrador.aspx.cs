@@ -20,8 +20,8 @@ namespace Web_Botilleria
         protected void btnBuscarPorId_Click(object sender, EventArgs e)
         {
             ArrayList lista = new ArrayList();
-            Producto producto;
-            producto= new Producto();
+            Bebida producto;
+            producto= new Bebida();
             producto.RecuperarEstadoPorId(txbIdBuscAd.Text.Trim());
 
             if (!producto.Equals(null))
@@ -37,7 +37,7 @@ namespace Web_Botilleria
 
         protected void btnBuscarPorNombre_Click(object sender, EventArgs e)
         {            
-            List<Producto> lista = Buscador.ConsultarParteNombre(txbNombreBuscAd.Text.Trim());
+            List<Bebida> lista = Buscador.ConsultarParteNombre(txbNombreBuscAd.Text.Trim());
 
             gvwAdminBusc.DataSource = new ArrayList();
             gvwAdminBusc.DataSource = lista;
@@ -46,7 +46,7 @@ namespace Web_Botilleria
 
         protected void btnBuscarPorMarca_Click(object sender, EventArgs e)
         {            
-            List<Producto> lista = Buscador.ConsultarStockDeMarca(txbMarcaBuscAd.Text.Trim());
+            List<Bebida> lista = Buscador.ConsultarStockDeMarca(txbMarcaBuscAd.Text.Trim());
 
             gvwAdminBusc.DataSource = new ArrayList();
             gvwAdminBusc.DataSource = lista;

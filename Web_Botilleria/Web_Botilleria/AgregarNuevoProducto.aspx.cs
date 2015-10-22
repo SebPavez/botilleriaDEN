@@ -18,7 +18,7 @@ namespace Web_Botilleria
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Producto producto = new Producto();
+            Bebida producto = new Bebida();
             try
             {
                 producto.Nombre = txbNombre.Text.Trim();

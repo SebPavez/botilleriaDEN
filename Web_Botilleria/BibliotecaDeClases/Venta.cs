@@ -18,9 +18,9 @@ namespace BibliotecaClases
         }
         #endregion IDVenta
         #region listaProductos
-        private List<Producto> lstProductos;
+        private List<Bebida> lstProductos;
 
-        public List<Producto> Productos
+        public List<Bebida> Productos
         {
             get { return lstProductos; }
             set { lstProductos = value; }

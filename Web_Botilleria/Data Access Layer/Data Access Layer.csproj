@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="DiagramaEntidades.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj">

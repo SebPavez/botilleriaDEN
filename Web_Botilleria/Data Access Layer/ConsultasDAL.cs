@@ -9,9 +9,9 @@ namespace Data_Access_Layer
 {
     public class ConsultasDAL
     {
-        public static List<Producto> ConsultarPorNombre(int idBodega, String nombreProductoBuscado)
+        public static List<Bebida> ConsultarPorNombre(int idBodega, String nombreProductoBuscado)
         {
-            List<Producto> productosEncontrandos = new List<Producto>();
+            List<Bebida> productosEncontrandos = new List<Bebida>();
             var context = new BotilleriaEntities();
             var matching = context.BodegaLocals.Where(b => b.id_bodega == idBodega);
             var matchings = from c in context.Bebidas where c.nombre_producto == nombreProductoBuscado select c;
@@ -24,7 +24,7 @@ namespace Data_Access_Layer
 
         }
 
-        public static List<Producto> ConsultarPorNombre(String nombreProductoBuscado)
+        public static List<Bebida> ConsultarPorNombre(String nombreProductoBuscado)
         {
             var context = new BotilleriaEntities();
             ObjectSet<Bebida> matchings = from c in context.Bebidas where c.nombre_producto == nombreProductoBuscado select c;

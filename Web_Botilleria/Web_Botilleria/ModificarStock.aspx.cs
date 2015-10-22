@@ -19,7 +19,7 @@ namespace Web_Botilleria
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             String strID = txbIDMod.Text.Trim();
-            Producto producto = new Producto();            
+            Bebida producto = new Bebida();            
 
             try
             {

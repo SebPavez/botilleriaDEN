@@ -30,7 +30,7 @@ namespace Web_Botilleria
             persona2.Administrador = true;
             persona2.Password = "munoz123";
 
-            Producto primerProducto = new Producto();
+            Bebida primerProducto = new Bebida();
             primerProducto.Nombre = "stoli";
             primerProducto.Marca = "stoli s.a";
             primerProducto.VolumenLitros = 1.8;
