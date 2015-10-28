@@ -11,7 +11,7 @@ namespace Data_Access_Layer
         public Boolean BuscarUsername(string strUsername)
         {
             bool blnExiste = false;
-            var context = new BotilleriaEntities();
+            var context = new WebBotilleriaEntities();
             List<Usuario> listaPersonas = context.Usuarios.ToList<Usuario>(); 
             foreach (var item in listaPersonas)
             {
@@ -24,27 +24,32 @@ namespace Data_Access_Layer
             return blnExiste;
         }
 
-
-        //generar ID nuevo desde procedimiento almacenado o método en DAL? 
         public Boolean GuardarPersona(Persona nuevaPersona)
         {
             if (!BuscarUsername(nuevaPersona.NombreUsuario))
             {
-                var context = new BotilleriaEntities();
-                List<Usuario> listaPersonas = context.Usuarios.ToList<Usuario>();
+                var context = new WebBotilleriaEntities();
+                List<Usuario> listaPersonas = context.Usuario.ToList<Usuario>();
                 listaPersonas.Add(new Usuario()
                 {
-                    id_usuario = listaPersonas.Count+1, //cambiar por método o procedimiento almacenado, ejemplo = ObtenerIdentificadorNuevo("ID", "ID");
+                    id_usuario = ObtenerIDUltimaPersona()+1, 
                     nombre_usuario = nuevaPersona.NombreUsuario,
                     contrasenja_usuario = nuevaPersona.Password,
-                    esAdministrador = nuevaPersona.Administrador,
-                    Ventas = new System.Data.Objects.DataClasses.EntityCollection<Venta>()
+                    esAdministrador = nuevaPersona.Administrador                    
                 });
                 context.SaveChanges();                
                 return true;
             }
             else
                 return false;
+        }
+
+        public int ObtenerIDUltimaPersona() 
+        {
+            using (var context = new WebBotilleriaEntities())
+            {
+                return context.Usuario.LastOrDefault().id_usuario;                
+            }
         }
     }
 }

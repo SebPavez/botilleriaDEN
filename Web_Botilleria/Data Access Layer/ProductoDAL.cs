@@ -2,48 +2,75 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BibliotecaClases;
 
 namespace Data_Access_Layer
 {
     class ProductoDAL
-    {
-        
-        ////Suma o resta una cantidad ingresada por parametro al producto actual, luego actualiza la BD
-        //public void ActualizarStock(int actualizacion)
-        //{
-        //    this.Cantidad += actualizacion;
-        //    MotorXML xml = MotorXML.getIntancia();
-        //    xml.ModificarObjeto(this, "ID");
-        //    xml.GuardarXMLArchivo();
-        //}
+    {        
+        //Debería de hacerse boolean este método
+        public void ActualizarStock(int actualizacion, int idBodega, int idProducto)
+        {
+            var context = new WebBotilleriaEntities();            
+            BodegaLocal primeraMuestra = (BodegaLocal)(context.BodegaLocal.Where(c => c.id_bodega == idBodega).Where(c => c.producto_fk == idProducto).ToList<BodegaLocal>())[0];
+            primeraMuestra.cantidad += actualizacion;
+            context.SaveChanges();
+        }
 
-        //public Boolean EliminarProducto(String idProducto)
-        //{
+        public Boolean EliminarProducto(String idProducto)
+        {
         //    MotorXML xml = MotorXML.getIntancia();
         //    xml.EliminarObjeto(this, "ID");
         //    xml.GuardarXMLArchivo();
-        //    return true;
-        //}
+            return true;
+        }
+                
+        public Boolean ingresarBebida(Bebida nuevoProducto)
+        {
+            if (!BuscarNombreBebida(nuevoProducto.Nombre))
+            {
+                var context = new WebBotilleriaEntities();
+                List<Bebidas> listaBebidas = context.Bebida.ToList<Bebidas>();
+                listaBebidas.Add(new Bebidas()
+                    {
+                        id_bebida = ObtenerIDUltimaBebida() + 1,
+                        nombre_producto = nuevoProducto.Nombre,
+                        marca = (int)nuevoProducto.Marca,
+                        volumen_litros = nuevoProducto.VolumenLitros,
+                        precio = nuevoProducto.Precio,
+                        tipo = (int)nuevoProducto.TipoProducto,
+                        grados_alcohol = nuevoProducto.GradosDeAlcohol,
+                        comentario = nuevoProducto.Comentario,
+                        es_retornable = nuevoProducto.Retornable
+                    });
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+        }
 
-        ////Agrega un nuevo producto, asignándole una ID única
-        //public Boolean ingresarProducto(Producto nuevoProducto)
-        //{
-        //    MotorXML xml = MotorXML.getIntancia();
-        //    ID = xml.ObtenerIdentificadorNuevo("ID", "ID");
-        //    xml.AgregarObjeto(this, "ID", "ID");
-        //    xml.GuardarXMLArchivo();
-        //    return true;
-        //}
-
-        ////Busca la existencia de un producto con "idProductoValidando".
-        ////Si existe, carga sus parametros en una instancia de Producto y devuelve "true"
-        ////De lo contrario, solo devuelve "false" sin cargar datos a la instancia
-        //public Boolean RecuperarEstadoPorId(String idProductoValidando)
-        //{
-        //    if (MotorXML.getIntancia().Buscar(ID.ToString(), "ID", this) != null)
-        //        return true;
-        //    else
-        //        return false;
-        //}
+        public Boolean BuscarNombreBebida(string nombreBebida)
+        {
+            bool existe = false;
+            var context = new WebBotilleriaEntities();
+            List<Bebidas> listaBebidas = context.Bebida.ToList<Bebidas>();
+            foreach (var item in listaBebidas)
+            {
+                if (item.nombre_producto.Equals(nombreBebida))
+                {
+                    existe = true;
+                    return existe;
+                }
+            }
+            return existe;
+        }
+        public int ObtenerIDUltimaBebida()
+        {
+            using (var context = new WebBotilleriaEntities())
+            {
+                return context.Bebida.LastOrDefault().id_bebida;                
+            }
+        }
     }
 }
