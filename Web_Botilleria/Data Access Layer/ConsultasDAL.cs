@@ -95,12 +95,32 @@ namespace Data_Access_Layer
                 }
             }
             return resultado;
+        }       
+        
+        public static List<Bebida> ConsultarStockDeMarcaGeneral(String marcaProductoBuscado) {
+            List<Bebida> resultado = new List<Bebida>();
+            using (var context = new WebBotilleriaEntities())
+            {
+                foreach (int id in (from c in context.BodegaLocal select c.id_bodega))
+                {
+                    resultado.AddRange(ConsultarStockDeMarca(marcaProductoBuscado,id);
+                }
+            }
+            return resultado;
+
         }
 
-        //métodos no implementados 
-        //public static List<Bebida> ConsultarStockDeMarcaGeneral(String marcaProductoBuscado) {}
-
-        //public static List<Bebida> ConsultarStockPorPrecioGeneral(String marcaProductoBuscado) { }
+        public static List<Bebida> ConsultarStockPorNombreGeneral(String nombreProductoBuscado) {
+            List<Bebida> resultado = new List<Bebida>();
+            using (var context = new WebBotilleriaEntities())
+            {
+                foreach(int id in (from c in context.BodegaLocal select c.id_bodega))
+                {
+                    resultado.AddRange(ConsultarPorNombre(id, nombreProductoBuscado));
+                }
+            }
+            return resultado;
+        }
     }
 
 }
