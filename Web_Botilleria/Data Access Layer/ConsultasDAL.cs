@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using BibliotecaClases;
+using System.Text; 
 using System.Data.Objects;
+using BibliotecaClases;
 
 namespace Data_Access_Layer
 {
@@ -23,11 +23,9 @@ namespace Data_Access_Layer
                     bebida.Precio = item.precio;                    
                     bebida.Marca = (Marca) Enum.Parse(typeof(Marca), item.MarcaBebida.marca, true);
                     bebida.VolumenLitros = item.volumen_litros;
-                    foreach (var producto in matchingBodega)
-                    {
-                        if (producto.producto_fk == item.id_bebida)
-                            bebida.Cantidad = producto.cantidad;                        
-                    }
+                    bebida.Cantidad = context.BodegaLocal.Where(c => c.id_bodega == idBodega).ToList<BodegaLocal>().FirstOrDefault().cantidad;
+                    if (bebida.Cantidad == null)
+                        bebida.Cantidad = 0;
                     bebida.TipoProducto = (Tipo)Enum.Parse(typeof(Tipo), item.TipoBebida.tipo, true);
                     bebida.GradosDeAlcohol = item.grados_alcohol;
                     bebida.Comentario = item.comentario;
@@ -38,35 +36,7 @@ namespace Data_Access_Layer
             return resultado;
         }
 
-        public static List<Bebida> ConsultarPorNombre(String nombreProductoBuscado)
-        {
-            var context = new WebBotilleriaEntities();            
-            List<Bebida> resultado = new List<Bebida>();
-            var matchingBebida = from c in context.Bebida where c.nombre_producto == nombreProductoBuscado select c;            
-            foreach (var item in matchingBebida)
-            {
-                Bebida bebida = new Bebida();
-                bebida.ID = item.id_bebida;
-                bebida.Nombre = item.nombre_producto;
-                bebida.Precio = item.precio;
-                bebida.Marca = (Marca) Enum.Parse(typeof(Marca), item.MarcaBebida.marca, true);
-                bebida.VolumenLitros = item.volumen_litros;
-                foreach (var producto in (from c in context.BodegaLocal where c.producto_fk == item.id_bebida select c))
-                {
-                    if (producto.producto_fk == item.id_bebida)
-                        bebida.Cantidad = producto.cantidad;
-                }
-                bebida.TipoProducto = (Tipo) Enum.Parse(typeof(Tipo), item.TipoBebida.tipo, true);
-                bebida.GradosDeAlcohol = item.grados_alcohol;
-                bebida.Comentario = item.comentario;
-                bebida.Retornable = item.es_retornable;
-                resultado.Add(bebida);
-            }
-            return resultado;
-        }
-
-
-        public static List<Bebida> ConsultarStockDeMarca(String marcaProductoBuscado)
+        public static List<Bebida> ConsultarStockDeMarca(String marcaProductoBuscado, int idBodega)
         {
             var context = new WebBotilleriaEntities();
             List<Bebida> resultado = new List<Bebida>();
@@ -79,11 +49,9 @@ namespace Data_Access_Layer
                 bebida.Precio = item.precio;
                 bebida.Marca = (Marca)Enum.Parse(typeof(Marca), item.MarcaBebida.marca, true);
                 bebida.VolumenLitros = item.volumen_litros;
-                foreach (var producto in (from c in context.BodegaLocal where c.producto_fk == item.id_bebida select c))
-                {
-                    if (producto.producto_fk == item.id_bebida)
-                        bebida.Cantidad = producto.cantidad;
-                }
+                bebida.Cantidad = context.BodegaLocal.Where(c => c.id_bodega == idBodega).ToList<BodegaLocal>().FirstOrDefault().cantidad;
+                if (bebida.Cantidad == null)
+                    bebida.Cantidad = 0;
                 bebida.TipoProducto = (Tipo)Enum.Parse(typeof(Tipo), item.TipoBebida.tipo, true);
                 bebida.GradosDeAlcohol = item.grados_alcohol;
                 bebida.Comentario = item.comentario;
@@ -93,12 +61,11 @@ namespace Data_Access_Layer
             return resultado;
         }
 
-        public static List<Bebida> ConsultarPorPrecio(int precioBuscado)
+        public static List<Bebida> ConsultarPorPrecioExacto(int precioBuscado, int idBodega)
         {
             List<Bebida> resultado = new List<Bebida>();
-            var context = new WebBotilleriaEntities();
-            var matchings = from c in context.Bebida where c.precio == precioBuscado select c;
-            foreach (var item in matchings)
+            var context = new WebBotilleriaEntities();            
+            foreach (var item in (from c in context.Bebida where c.precio == precioBuscado select c))
             {
                 Bebida bebida = new Bebida();
                 bebida.ID = item.id_bebida;
@@ -106,11 +73,9 @@ namespace Data_Access_Layer
                 bebida.Precio = item.precio;
                 bebida.Marca = (Marca)Enum.Parse(typeof(Marca), item.MarcaBebida.marca, true);
                 bebida.VolumenLitros = item.volumen_litros;
-                foreach (var producto in (from c in context.BodegaLocal where c.producto_fk == item.id_bebida select c))
-                {
-                    if (producto.producto_fk == item.id_bebida)
-                        bebida.Cantidad = producto.cantidad;
-                }
+                bebida.Cantidad = context.BodegaLocal.Where(c => c.id_bodega == idBodega).ToList<BodegaLocal>().FirstOrDefault().cantidad;
+                if (bebida.Cantidad == null)
+                    bebida.Cantidad = 0;
                 bebida.TipoProducto = (Tipo)Enum.Parse(typeof(Tipo), item.TipoBebida.tipo, true);
                 bebida.GradosDeAlcohol = item.grados_alcohol;
                 bebida.Comentario = item.comentario;
@@ -118,7 +83,24 @@ namespace Data_Access_Layer
                 resultado.Add(bebida);
             }
             return resultado;
-        }  
+        }
+        
+        public static List<Bebida> ConsultarPorPrecioExactoGeneral(int precioBuscado) {
+            List<Bebida> resultado = new List<Bebida>();
+            using (var context = new WebBotilleriaEntities())
+            {
+                foreach (int id in (from c in context.BodegaLocal select c.id_bodega))
+                {
+                    resultado.AddRange(ConsultarPorPrecioExacto(precioBuscado, id));
+                }
+            }
+            return resultado;
+        }
+
+        //métodos no implementados 
+        //public static List<Bebida> ConsultarStockDeMarcaGeneral(String marcaProductoBuscado) {}
+
+        //public static List<Bebida> ConsultarStockPorPrecioGeneral(String marcaProductoBuscado) { }
     }
 
 }

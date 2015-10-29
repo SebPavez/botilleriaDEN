@@ -37,3 +37,7 @@ C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\bin\Debug\BibliotecaD
 C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.dll
 C:\Users\CETECOM\Desktop\Web_Botilleria\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.pdb
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.dll
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\BibliotecaDeClases\obj\Debug\BibliotecaDeClases.pdb
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\BibliotecaDeClases\bin\Debug\BibliotecaDeClases.dll
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\BibliotecaDeClases\bin\Debug\BibliotecaDeClases.pdb

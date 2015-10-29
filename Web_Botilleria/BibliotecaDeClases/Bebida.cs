@@ -8,7 +8,7 @@ using System.Text;
 namespace BibliotecaClases
 {
     [Serializable]
-    public class Bebida : IDisposable
+    public class Bebida
     {
         #region IdProducto
         private int intIdProducto;

@@ -4,43 +4,42 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DAL.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="DALStoreContainer">
-          <EntitySet Name="Bebida" EntityType="DAL.Store.Bebida" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BodegaLocal" EntityType="DAL.Store.BodegaLocal" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="detalle_venta" EntityType="DAL.Store.detalle_venta" store:Type="Tables" store:Schema="dbo" store:Name="detalle_venta">
+      <Schema Namespace="WebBotilleriaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WebBotilleriaModelStoreContainer">
+          <EntitySet Name="Bebida" EntityType="WebBotilleriaModel.Store.Bebida" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BodegaLocal" EntityType="WebBotilleriaModel.Store.BodegaLocal" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="detalle_venta" EntityType="WebBotilleriaModel.Store.detalle_venta" store:Type="Tables" store:Schema="dbo" store:Name="detalle_venta">
             <DefiningQuery>SELECT 
       [detalle_venta].[cantidad] AS [cantidad], 
       [detalle_venta].[id_bebida_fk] AS [id_bebida_fk], 
       [detalle_venta].[id_venta_fk] AS [id_venta_fk]
       FROM [dbo].[detalle_venta] AS [detalle_venta]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="MarcaBebida" EntityType="DAL.Store.MarcaBebida" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="DAL.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TipoBebida" EntityType="DAL.Store.TipoBebida" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuario" EntityType="DAL.Store.Usuario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Venta" EntityType="DAL.Store.Venta" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Bebida_MarcaBebida" Association="DAL.Store.FK_Bebida_MarcaBebida">
+          <EntitySet Name="MarcaBebida" EntityType="WebBotilleriaModel.Store.MarcaBebida" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoBebida" EntityType="WebBotilleriaModel.Store.TipoBebida" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="WebBotilleriaModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Venta" EntityType="WebBotilleriaModel.Store.Venta" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Bebida_MarcaBebida" Association="WebBotilleriaModel.Store.FK_Bebida_MarcaBebida">
             <End Role="MarcaBebida" EntitySet="MarcaBebida" />
             <End Role="Bebida" EntitySet="Bebida" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bebida_TipoBebida" Association="DAL.Store.FK_Bebida_TipoBebida">
+          <AssociationSet Name="FK_Bebida_TipoBebida" Association="WebBotilleriaModel.Store.FK_Bebida_TipoBebida">
             <End Role="TipoBebida" EntitySet="TipoBebida" />
             <End Role="Bebida" EntitySet="Bebida" />
           </AssociationSet>
-          <AssociationSet Name="FK_BodegaLocal_Bebida" Association="DAL.Store.FK_BodegaLocal_Bebida">
+          <AssociationSet Name="FK_BodegaLocal_Bebida" Association="WebBotilleriaModel.Store.FK_BodegaLocal_Bebida">
             <End Role="Bebida" EntitySet="Bebida" />
             <End Role="BodegaLocal" EntitySet="BodegaLocal" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalle_venta_Bebida" Association="DAL.Store.FK_detalle_venta_Bebida">
+          <AssociationSet Name="FK_detalle_venta_Bebida" Association="WebBotilleriaModel.Store.FK_detalle_venta_Bebida">
             <End Role="Bebida" EntitySet="Bebida" />
             <End Role="detalle_venta" EntitySet="detalle_venta" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalle_venta_Venta" Association="DAL.Store.FK_detalle_venta_Venta">
+          <AssociationSet Name="FK_detalle_venta_Venta" Association="WebBotilleriaModel.Store.FK_detalle_venta_Venta">
             <End Role="Venta" EntitySet="Venta" />
             <End Role="detalle_venta" EntitySet="detalle_venta" />
           </AssociationSet>
-          <AssociationSet Name="FK_Venta_Usuario" Association="DAL.Store.FK_Venta_Usuario">
+          <AssociationSet Name="FK_Venta_Usuario" Association="WebBotilleriaModel.Store.FK_Venta_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Venta" EntitySet="Venta" />
           </AssociationSet>
@@ -51,10 +50,10 @@
           </Key>
           <Property Name="id_bebida" Type="int" Nullable="false" />
           <Property Name="nombre_producto" Type="char" Nullable="false" MaxLength="15" />
-          <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="precio" Type="real" Nullable="false" />
           <Property Name="tipo" Type="int" Nullable="false" />
-          <Property Name="grados_alcohol" Type="numeric" Nullable="false" Precision="2" />
-          <Property Name="volumen_litros" Type="numeric" Nullable="false" Precision="2" />
+          <Property Name="grados_alcohol" Type="real" Nullable="false" />
+          <Property Name="volumen_litros" Type="real" Nullable="false" />
           <Property Name="es_retornable" Type="bit" Nullable="false" />
           <Property Name="comentario" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="marca" Type="int" Nullable="false" />
@@ -87,16 +86,6 @@
           <Property Name="id_marca" Type="int" Nullable="false" />
           <Property Name="marca" Type="nchar" Nullable="false" MaxLength="30" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TipoBebida">
           <Key>
             <PropertyRef Name="id_tipo" />
@@ -123,8 +112,8 @@
           <Property Name="id_usuario_fk" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Bebida_MarcaBebida">
-          <End Role="MarcaBebida" Type="DAL.Store.MarcaBebida" Multiplicity="1" />
-          <End Role="Bebida" Type="DAL.Store.Bebida" Multiplicity="*" />
+          <End Role="MarcaBebida" Type="WebBotilleriaModel.Store.MarcaBebida" Multiplicity="1" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Store.Bebida" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MarcaBebida">
               <PropertyRef Name="id_marca" />
@@ -135,8 +124,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Bebida_TipoBebida">
-          <End Role="TipoBebida" Type="DAL.Store.TipoBebida" Multiplicity="1" />
-          <End Role="Bebida" Type="DAL.Store.Bebida" Multiplicity="*" />
+          <End Role="TipoBebida" Type="WebBotilleriaModel.Store.TipoBebida" Multiplicity="1" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Store.Bebida" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoBebida">
               <PropertyRef Name="id_tipo" />
@@ -147,8 +136,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BodegaLocal_Bebida">
-          <End Role="Bebida" Type="DAL.Store.Bebida" Multiplicity="1" />
-          <End Role="BodegaLocal" Type="DAL.Store.BodegaLocal" Multiplicity="*" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Store.Bebida" Multiplicity="1" />
+          <End Role="BodegaLocal" Type="WebBotilleriaModel.Store.BodegaLocal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bebida">
               <PropertyRef Name="id_bebida" />
@@ -159,8 +148,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_detalle_venta_Bebida">
-          <End Role="Bebida" Type="DAL.Store.Bebida" Multiplicity="1" />
-          <End Role="detalle_venta" Type="DAL.Store.detalle_venta" Multiplicity="*" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Store.Bebida" Multiplicity="1" />
+          <End Role="detalle_venta" Type="WebBotilleriaModel.Store.detalle_venta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bebida">
               <PropertyRef Name="id_bebida" />
@@ -171,8 +160,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_detalle_venta_Venta">
-          <End Role="Venta" Type="DAL.Store.Venta" Multiplicity="1" />
-          <End Role="detalle_venta" Type="DAL.Store.detalle_venta" Multiplicity="*" />
+          <End Role="Venta" Type="WebBotilleriaModel.Store.Venta" Multiplicity="1" />
+          <End Role="detalle_venta" Type="WebBotilleriaModel.Store.detalle_venta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Venta">
               <PropertyRef Name="id_venta" />
@@ -183,8 +172,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Venta_Usuario">
-          <End Role="Usuario" Type="DAL.Store.Usuario" Multiplicity="1" />
-          <End Role="Venta" Type="DAL.Store.Venta" Multiplicity="*" />
+          <End Role="Usuario" Type="WebBotilleriaModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Venta" Type="WebBotilleriaModel.Store.Venta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id_usuario" />
@@ -198,37 +187,36 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DAL" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="WebBotilleriaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="WebBotilleriaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Bebida" EntityType="DAL.Bebidas" />
-          <EntitySet Name="BodegaLocal" EntityType="DAL.BodegaLocal" />
-          <EntitySet Name="detalle_venta" EntityType="DAL.detalle_venta" />
-          <EntitySet Name="MarcaBebida" EntityType="DAL.MarcaBebida" />
-          <EntitySet Name="sysdiagrams" EntityType="DAL.sysdiagrams" />
-          <EntitySet Name="TipoBebida" EntityType="DAL.TipoBebida" />
-          <EntitySet Name="Usuario" EntityType="DAL.Usuario" />
-          <EntitySet Name="Venta" EntityType="DAL.Venta" />
-          <AssociationSet Name="FK_Bebida_MarcaBebida" Association="DAL.FK_Bebida_MarcaBebida">
+          <EntitySet Name="Bebida" EntityType="WebBotilleriaModel.Bebidas" />
+          <EntitySet Name="BodegaLocal" EntityType="WebBotilleriaModel.BodegaLocal" />
+          <EntitySet Name="detalle_venta" EntityType="WebBotilleriaModel.detalle_venta" />
+          <EntitySet Name="MarcaBebida" EntityType="WebBotilleriaModel.MarcaBebida" />
+          <EntitySet Name="TipoBebida" EntityType="WebBotilleriaModel.TipoBebida" />
+          <EntitySet Name="Usuario" EntityType="WebBotilleriaModel.Usuario" />
+          <EntitySet Name="Venta" EntityType="WebBotilleriaModel.Venta" />
+          <AssociationSet Name="FK_Bebida_MarcaBebida" Association="WebBotilleriaModel.FK_Bebida_MarcaBebida">
             <End Role="MarcaBebida" EntitySet="MarcaBebida" />
             <End Role="Bebida" EntitySet="Bebida" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bebida_TipoBebida" Association="DAL.FK_Bebida_TipoBebida">
+          <AssociationSet Name="FK_Bebida_TipoBebida" Association="WebBotilleriaModel.FK_Bebida_TipoBebida">
             <End Role="TipoBebida" EntitySet="TipoBebida" />
             <End Role="Bebida" EntitySet="Bebida" />
           </AssociationSet>
-          <AssociationSet Name="FK_BodegaLocal_Bebida" Association="DAL.FK_BodegaLocal_Bebida">
+          <AssociationSet Name="FK_BodegaLocal_Bebida" Association="WebBotilleriaModel.FK_BodegaLocal_Bebida">
             <End Role="Bebida" EntitySet="Bebida" />
             <End Role="BodegaLocal" EntitySet="BodegaLocal" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalle_venta_Bebida" Association="DAL.FK_detalle_venta_Bebida">
+          <AssociationSet Name="FK_detalle_venta_Bebida" Association="WebBotilleriaModel.FK_detalle_venta_Bebida">
             <End Role="Bebida" EntitySet="Bebida" />
             <End Role="detalle_venta" EntitySet="detalle_venta" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalle_venta_Venta" Association="DAL.FK_detalle_venta_Venta">
+          <AssociationSet Name="FK_detalle_venta_Venta" Association="WebBotilleriaModel.FK_detalle_venta_Venta">
             <End Role="Venta" EntitySet="Venta" />
             <End Role="detalle_venta" EntitySet="detalle_venta" />
           </AssociationSet>
-          <AssociationSet Name="FK_Venta_Usuario" Association="DAL.FK_Venta_Usuario">
+          <AssociationSet Name="FK_Venta_Usuario" Association="WebBotilleriaModel.FK_Venta_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Venta" EntitySet="Venta" />
           </AssociationSet>
@@ -239,17 +227,17 @@
           </Key>
           <Property Name="id_bebida" Type="Int32" Nullable="false" />
           <Property Name="nombre_producto" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="true" />
-          <Property Name="precio" Type="Double" Nullable="false" />
+          <Property Name="precio" Type="Single" Nullable="false" />
           <Property Name="tipo" Type="Int32" Nullable="false" />
-          <Property Name="grados_alcohol" Type="Double" Nullable="false" />
-          <Property Name="volumen_litros" Type="Double" Nullable="false" />
+          <Property Name="grados_alcohol" Type="Single" Nullable="false" />
+          <Property Name="volumen_litros" Type="Single" Nullable="false" />
           <Property Name="es_retornable" Type="Boolean" Nullable="false" />
           <Property Name="comentario" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="marca" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MarcaBebida" Relationship="DAL.FK_Bebida_MarcaBebida" FromRole="Bebida" ToRole="MarcaBebida" />
-          <NavigationProperty Name="TipoBebida" Relationship="DAL.FK_Bebida_TipoBebida" FromRole="Bebida" ToRole="TipoBebida" />
-          <NavigationProperty Name="BodegaLocal" Relationship="DAL.FK_BodegaLocal_Bebida" FromRole="Bebida" ToRole="BodegaLocal" />
-          <NavigationProperty Name="detalle_venta" Relationship="DAL.FK_detalle_venta_Bebida" FromRole="Bebida" ToRole="detalle_venta" />
+          <NavigationProperty Name="MarcaBebida" Relationship="WebBotilleriaModel.FK_Bebida_MarcaBebida" FromRole="Bebida" ToRole="MarcaBebida" />
+          <NavigationProperty Name="TipoBebida" Relationship="WebBotilleriaModel.FK_Bebida_TipoBebida" FromRole="Bebida" ToRole="TipoBebida" />
+          <NavigationProperty Name="BodegaLocal" Relationship="WebBotilleriaModel.FK_BodegaLocal_Bebida" FromRole="Bebida" ToRole="BodegaLocal" />
+          <NavigationProperty Name="detalle_venta" Relationship="WebBotilleriaModel.FK_detalle_venta_Bebida" FromRole="Bebida" ToRole="detalle_venta" />
         </EntityType>
         <EntityType Name="BodegaLocal">
           <Key>
@@ -258,7 +246,7 @@
           <Property Name="id_bodega" Type="Int32" Nullable="false" />
           <Property Name="producto_fk" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bebida" Relationship="DAL.FK_BodegaLocal_Bebida" FromRole="BodegaLocal" ToRole="Bebida" />
+          <NavigationProperty Name="Bebida" Relationship="WebBotilleriaModel.FK_BodegaLocal_Bebida" FromRole="BodegaLocal" ToRole="Bebida" />
         </EntityType>
         <EntityType Name="detalle_venta">
           <Key>
@@ -269,8 +257,8 @@
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="id_bebida_fk" Type="Int32" Nullable="false" />
           <Property Name="id_venta_fk" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bebida" Relationship="DAL.FK_detalle_venta_Bebida" FromRole="detalle_venta" ToRole="Bebida" />
-          <NavigationProperty Name="Venta" Relationship="DAL.FK_detalle_venta_Venta" FromRole="detalle_venta" ToRole="Venta" />
+          <NavigationProperty Name="Bebida" Relationship="WebBotilleriaModel.FK_detalle_venta_Bebida" FromRole="detalle_venta" ToRole="Bebida" />
+          <NavigationProperty Name="Venta" Relationship="WebBotilleriaModel.FK_detalle_venta_Venta" FromRole="detalle_venta" ToRole="Venta" />
         </EntityType>
         <EntityType Name="MarcaBebida">
           <Key>
@@ -278,17 +266,7 @@
           </Key>
           <Property Name="id_marca" Type="Int32" Nullable="false" />
           <Property Name="marca" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Bebida" Relationship="DAL.FK_Bebida_MarcaBebida" FromRole="MarcaBebida" ToRole="Bebida" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Bebida" Relationship="WebBotilleriaModel.FK_Bebida_MarcaBebida" FromRole="MarcaBebida" ToRole="Bebida" />
         </EntityType>
         <EntityType Name="TipoBebida">
           <Key>
@@ -296,7 +274,7 @@
           </Key>
           <Property Name="id_tipo" Type="Int32" Nullable="false" />
           <Property Name="tipo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Bebida" Relationship="DAL.FK_Bebida_TipoBebida" FromRole="TipoBebida" ToRole="Bebida" />
+          <NavigationProperty Name="Bebida" Relationship="WebBotilleriaModel.FK_Bebida_TipoBebida" FromRole="TipoBebida" ToRole="Bebida" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -306,7 +284,7 @@
           <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="contrasenja_usuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="esAdministrador" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Venta" Relationship="DAL.FK_Venta_Usuario" FromRole="Usuario" ToRole="Venta" />
+          <NavigationProperty Name="Venta" Relationship="WebBotilleriaModel.FK_Venta_Usuario" FromRole="Usuario" ToRole="Venta" />
         </EntityType>
         <EntityType Name="Venta">
           <Key>
@@ -316,12 +294,12 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" />
           <Property Name="total_precio" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
           <Property Name="id_usuario_fk" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="detalle_venta" Relationship="DAL.FK_detalle_venta_Venta" FromRole="Venta" ToRole="detalle_venta" />
-          <NavigationProperty Name="Usuario" Relationship="DAL.FK_Venta_Usuario" FromRole="Venta" ToRole="Usuario" />
+          <NavigationProperty Name="detalle_venta" Relationship="WebBotilleriaModel.FK_detalle_venta_Venta" FromRole="Venta" ToRole="detalle_venta" />
+          <NavigationProperty Name="Usuario" Relationship="WebBotilleriaModel.FK_Venta_Usuario" FromRole="Venta" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK_Bebida_MarcaBebida">
-          <End Role="MarcaBebida" Type="DAL.MarcaBebida" Multiplicity="1" />
-          <End Role="Bebida" Type="DAL.Bebidas" Multiplicity="*" />
+          <End Role="MarcaBebida" Type="WebBotilleriaModel.MarcaBebida" Multiplicity="1" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Bebidas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MarcaBebida">
               <PropertyRef Name="id_marca" />
@@ -332,8 +310,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Bebida_TipoBebida">
-          <End Role="TipoBebida" Type="DAL.TipoBebida" Multiplicity="1" />
-          <End Role="Bebida" Type="DAL.Bebidas" Multiplicity="*" />
+          <End Role="TipoBebida" Type="WebBotilleriaModel.TipoBebida" Multiplicity="1" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Bebidas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoBebida">
               <PropertyRef Name="id_tipo" />
@@ -344,8 +322,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BodegaLocal_Bebida">
-          <End Role="Bebida" Type="DAL.Bebidas" Multiplicity="1" />
-          <End Role="BodegaLocal" Type="DAL.BodegaLocal" Multiplicity="*" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Bebidas" Multiplicity="1" />
+          <End Role="BodegaLocal" Type="WebBotilleriaModel.BodegaLocal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bebida">
               <PropertyRef Name="id_bebida" />
@@ -356,8 +334,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_detalle_venta_Bebida">
-          <End Role="Bebida" Type="DAL.Bebidas" Multiplicity="1" />
-          <End Role="detalle_venta" Type="DAL.detalle_venta" Multiplicity="*" />
+          <End Role="Bebida" Type="WebBotilleriaModel.Bebidas" Multiplicity="1" />
+          <End Role="detalle_venta" Type="WebBotilleriaModel.detalle_venta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bebida">
               <PropertyRef Name="id_bebida" />
@@ -368,8 +346,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_detalle_venta_Venta">
-          <End Role="Venta" Type="DAL.Venta" Multiplicity="1" />
-          <End Role="detalle_venta" Type="DAL.detalle_venta" Multiplicity="*" />
+          <End Role="Venta" Type="WebBotilleriaModel.Venta" Multiplicity="1" />
+          <End Role="detalle_venta" Type="WebBotilleriaModel.detalle_venta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Venta">
               <PropertyRef Name="id_venta" />
@@ -380,8 +358,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Venta_Usuario">
-          <End Role="Usuario" Type="DAL.Usuario" Multiplicity="1" />
-          <End Role="Venta" Type="DAL.Venta" Multiplicity="*" />
+          <End Role="Usuario" Type="WebBotilleriaModel.Usuario" Multiplicity="1" />
+          <End Role="Venta" Type="WebBotilleriaModel.Venta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id_usuario" />
@@ -396,9 +374,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DALStoreContainer" CdmEntityContainer="WebBotilleriaEntities">
+        <EntityContainerMapping StorageEntityContainer="WebBotilleriaModelStoreContainer" CdmEntityContainer="WebBotilleriaEntities">
           <EntitySetMapping Name="Bebida">
-            <EntityTypeMapping TypeName="DAL.Bebidas">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.Bebidas">
               <MappingFragment StoreEntitySet="Bebida">
                 <ScalarProperty Name="id_bebida" ColumnName="id_bebida" />
                 <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
@@ -413,7 +391,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BodegaLocal">
-            <EntityTypeMapping TypeName="DAL.BodegaLocal">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.BodegaLocal">
               <MappingFragment StoreEntitySet="BodegaLocal">
                 <ScalarProperty Name="id_bodega" ColumnName="id_bodega" />
                 <ScalarProperty Name="producto_fk" ColumnName="producto_fk" />
@@ -422,7 +400,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="detalle_venta">
-            <EntityTypeMapping TypeName="DAL.detalle_venta">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.detalle_venta">
               <MappingFragment StoreEntitySet="detalle_venta">
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="id_bebida_fk" ColumnName="id_bebida_fk" />
@@ -431,26 +409,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MarcaBebida">
-            <EntityTypeMapping TypeName="DAL.MarcaBebida">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.MarcaBebida">
               <MappingFragment StoreEntitySet="MarcaBebida">
                 <ScalarProperty Name="id_marca" ColumnName="id_marca" />
                 <ScalarProperty Name="marca" ColumnName="marca" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DAL.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TipoBebida">
-            <EntityTypeMapping TypeName="DAL.TipoBebida">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.TipoBebida">
               <MappingFragment StoreEntitySet="TipoBebida">
                 <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -458,7 +425,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="DAL.Usuario">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
@@ -468,7 +435,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Venta">
-            <EntityTypeMapping TypeName="DAL.Venta">
+            <EntityTypeMapping TypeName="WebBotilleriaModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
                 <ScalarProperty Name="id_venta" ColumnName="id_venta" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -498,41 +465,40 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EDMWebBotilleria">
-        <EntityTypeShape EntityType="DAL.Bebidas" Width="1.5" PointX="3" PointY="3" Height="3.5186979166666665" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.BodegaLocal" Width="1.5" PointX="5.25" PointY="3.875" Height="1.787985026041667" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.detalle_venta" Width="1.5" PointX="5.25" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.MarcaBebida" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499987" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.125" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.TipoBebida" Width="1.5" PointX="0.75" PointY="1" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.Usuario" Width="1.5" PointX="0.75" PointY="7.75" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAL.Venta" Width="1.5" PointX="3" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
-        <AssociationConnector Association="DAL.FK_Bebida_MarcaBebida" ManuallyRouted="false">
+        <EntityTypeShape EntityType="WebBotilleriaModel.Bebidas" Width="1.5" PointX="3" PointY="3" Height="3.5186979166666665" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBotilleriaModel.BodegaLocal" Width="1.5" PointX="5.25" PointY="3.875" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBotilleriaModel.detalle_venta" Width="1.5" PointX="5.25" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBotilleriaModel.MarcaBebida" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499987" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBotilleriaModel.TipoBebida" Width="1.5" PointX="0.75" PointY="1" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBotilleriaModel.Usuario" Width="1.5" PointX="0.75" PointY="7.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBotilleriaModel.Venta" Width="1.5" PointX="3" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="WebBotilleriaModel.FK_Bebida_MarcaBebida" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
           <ConnectorPoint PointX="3" PointY="4.797841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="DAL.FK_Bebida_TipoBebida" ManuallyRouted="false">
+        <AssociationConnector Association="WebBotilleriaModel.FK_Bebida_TipoBebida" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.7978417968749998" />
           <ConnectorPoint PointX="3.75" PointY="1.7978417968749998" />
           <ConnectorPoint PointX="3.75" PointY="3" />
         </AssociationConnector>
-        <AssociationConnector Association="DAL.FK_BodegaLocal_Bebida" ManuallyRouted="false">
+        <AssociationConnector Association="WebBotilleriaModel.FK_BodegaLocal_Bebida" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="4.7689925130208337" />
           <ConnectorPoint PointX="4.791666666666667" PointY="4.7689925130208328" />
           <ConnectorPoint PointX="4.958333333333333" PointY="4.7689925130208337" />
           <ConnectorPoint PointX="5.25" PointY="4.7689925130208337" />
         </AssociationConnector>
-        <AssociationConnector Association="DAL.FK_detalle_venta_Bebida" ManuallyRouted="false">
+        <AssociationConnector Association="WebBotilleriaModel.FK_detalle_venta_Bebida" ManuallyRouted="false">
           <ConnectorPoint PointX="4.1562525" PointY="3" />
           <ConnectorPoint PointX="4.1562525" PointY="1.2739208984375" />
           <ConnectorPoint PointX="5.25" PointY="1.2739208984375" />
         </AssociationConnector>
-        <AssociationConnector Association="DAL.FK_detalle_venta_Venta" ManuallyRouted="false">
+        <AssociationConnector Association="WebBotilleriaModel.FK_detalle_venta_Venta" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="7.625" />
           <ConnectorPoint PointX="4.875" PointY="7.25" />
           <ConnectorPoint PointX="4.875" PointY="2.033355678385417" />
           <ConnectorPoint PointX="5.25" PointY="2.033355678385417" />
         </AssociationConnector>
-        <AssociationConnector Association="DAL.FK_Venta_Usuario" ManuallyRouted="false">
+        <AssociationConnector Association="WebBotilleriaModel.FK_Venta_Usuario" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="8.7401432291666659" />
           <ConnectorPoint PointX="3" PointY="8.7401432291666659" />
         </AssociationConnector>

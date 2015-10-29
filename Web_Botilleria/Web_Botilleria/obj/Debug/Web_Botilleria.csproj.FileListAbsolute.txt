@@ -39,3 +39,6 @@ C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria0110201
 C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\Web_Botilleria\obj\Debug\Web_Botilleria.csprojResolveAssemblyReference.cache
 C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\Web_Botilleria\obj\Debug\Web_Botilleria.dll
 C:\Users\Wyrm\Documents\GitHub\BotilleriaDEN\botilleriaDEN\Web_Botilleria01102015\Web_Botilleria\obj\Debug\Web_Botilleria.pdb
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\Web_Botilleria\obj\Debug\Web_Botilleria.csprojResolveAssemblyReference.cache
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\Web_Botilleria\obj\Debug\Web_Botilleria.dll
+C:\Users\Wyrm\Documents\GitHub\botilleriaDEN2015\Web_Botilleria\Web_Botilleria\obj\Debug\Web_Botilleria.pdb
