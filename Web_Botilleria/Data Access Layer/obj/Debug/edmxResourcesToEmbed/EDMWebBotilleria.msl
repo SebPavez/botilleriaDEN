@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="WebBotilleriaModelStoreContainer" CdmEntityContainer="WebBotilleriaEntities">
-    <EntitySetMapping Name="Bebida">
-      <EntityTypeMapping TypeName="WebBotilleriaModel.Bebidas">
+    <EntitySetMapping Name="Bebidas">
+      <EntityTypeMapping TypeName="WebBotilleriaModel.EntidadBebida">
         <MappingFragment StoreEntitySet="Bebida">
           <ScalarProperty Name="id_bebida" ColumnName="id_bebida" />
           <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
@@ -16,12 +16,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BodegaLocal">
-      <EntityTypeMapping TypeName="WebBotilleriaModel.BodegaLocal">
-        <MappingFragment StoreEntitySet="BodegaLocal">
+    <EntitySetMapping Name="Bodegas">
+      <EntityTypeMapping TypeName="WebBotilleriaModel.EntidadBodega">
+        <MappingFragment StoreEntitySet="Bodega">
           <ScalarProperty Name="id_bodega" ColumnName="id_bodega" />
-          <ScalarProperty Name="producto_fk" ColumnName="producto_fk" />
-          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="nombre_bodega" ColumnName="nombre_bodega" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -34,7 +36,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MarcaBebida">
+    <EntitySetMapping Name="DetalleBodegaLocals">
+      <EntityTypeMapping TypeName="WebBotilleriaModel.DetalleEnBodega">
+        <MappingFragment StoreEntitySet="DetalleBodegaLocal">
+          <ScalarProperty Name="id_bodega_fk" ColumnName="id_bodega_fk" />
+          <ScalarProperty Name="id_bebida_fk" ColumnName="id_bebida_fk" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarcaBebidas">
       <EntityTypeMapping TypeName="WebBotilleriaModel.MarcaBebida">
         <MappingFragment StoreEntitySet="MarcaBebida">
           <ScalarProperty Name="id_marca" ColumnName="id_marca" />
@@ -42,7 +53,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TipoBebida">
+    <EntitySetMapping Name="TipoBebidas">
       <EntityTypeMapping TypeName="WebBotilleriaModel.TipoBebida">
         <MappingFragment StoreEntitySet="TipoBebida">
           <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
@@ -50,7 +61,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuario">
+    <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="WebBotilleriaModel.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
@@ -60,7 +71,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Venta">
+    <EntitySetMapping Name="Ventas">
       <EntityTypeMapping TypeName="WebBotilleriaModel.Venta">
         <MappingFragment StoreEntitySet="Venta">
           <ScalarProperty Name="id_venta" ColumnName="id_venta" />

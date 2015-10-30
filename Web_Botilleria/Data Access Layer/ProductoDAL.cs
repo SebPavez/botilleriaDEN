@@ -7,30 +7,54 @@ using BibliotecaClases;
 
 namespace Data_Access_Layer
 {
-    class ProductoDAL
+    public class ProductoDAL
     {                
         public static Boolean ActualizarStock(int actualizacion, int idBodega, int idProducto)
-        {            
-            var context = new WebBotilleriaEntities();            
-            BodegaLocal primeraMuestra = context.BodegaLocal.Where(c => c.id_bodega == idBodega).Where(c => c.producto_fk == idProducto).ToList<BodegaLocal>().FirstOrDefault();
-            if (primeraMuestra.cantidad + actualizacion >= 0)
+        {
+            try
             {
-                primeraMuestra.cantidad += actualizacion;
-                context.SaveChanges();
-                return true;
-            }
-            else
+                var context = new WebBotilleriaEntities();
+                DetalleEnBodega detalle = context.DetalleBodegaLocals.Where(c => c.id_bodega_fk == idBodega).Where(c => c.id_bebida_fk == idProducto).ToList<DetalleEnBodega>().FirstOrDefault();
+                //if ((context.DetalleBodegaLocals.Where(c => c.id_bodega_fk == idBodega).Where(c => c.id_bebida_fk == idProducto).ToList<DetalleEnBodega>().FirstOrDefault()) != null)
+                if (detalle != null)
+                {
+                    //if (context.DetalleBodegaLocals.Where(c => c.id_bodega_fk == idBodega).Where(c => c.id_bebida_fk == idProducto).ToList<DetalleEnBodega>().First().cantidad + actualizacion >= 0)
+                    if (detalle.cantidad + actualizacion >= 0)
+                    {
+                        //context.DetalleBodegaLocals.Where(c => c.id_bodega_fk == idBodega).Where(c => c.id_bebida_fk == idProducto).ToList<DetalleEnBodega>().First().cantidad += actualizacion;
+                        detalle.cantidad += actualizacion;
+                        context.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (actualizacion >= 0 && context.Bodegas.Where(c => c.id_bodega == idBodega).FirstOrDefault()!=null)
+                    {
+                        context.DetalleBodegaLocals.AddObject(DetalleEnBodega.CreateDetalleEnBodega(idBodega, idProducto, actualizacion));
+                        context.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
                 return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString()); 
+                return false;
+            }
         }
 
         public static Boolean EliminarProducto(int idProducto)
         {
             using (var context = new WebBotilleriaEntities())
             {
-                List<Bebidas> listaBebidas = context.Bebida.ToList<Bebidas>();
+                List<EntidadBebida> listaBebidas = context.Bebidas.ToList<EntidadBebida>();
                 if (listaBebidas.Where(s => s.id_bebida == idProducto).FirstOrDefault() != null)
                 {
-                    context.Bebida.DeleteObject(listaBebidas.Where(s => s.id_bebida == idProducto).FirstOrDefault());
+                    context.Bebidas.DeleteObject(listaBebidas.Where(s => s.id_bebida == idProducto).FirstOrDefault());
                     context.SaveChanges();
                     return true;
                 }
@@ -45,7 +69,7 @@ namespace Data_Access_Layer
             {
                 using (var context = new WebBotilleriaEntities())
                 {
-                    context.Bebida.AddObject(new Bebidas()
+                    context.Bebidas.AddObject(new EntidadBebida()
                         {
                             id_bebida = ObtenerIDUltimaBebida() + 1,
                             nombre_producto = nuevoProducto.Nombre,
@@ -69,8 +93,8 @@ namespace Data_Access_Layer
         {
             bool existe = false;
             var context = new WebBotilleriaEntities();
-            List<Bebidas> listaBebidas = context.Bebida.ToList<Bebidas>();
-            foreach (var item in listaBebidas)
+            List<EntidadBebida> listaEBebidas = context.Bebidas.ToList<EntidadBebida>();
+            foreach (var item in listaEBebidas)
             {
                 if (item.nombre_producto.Equals(nombreBebida))
                 {
@@ -85,7 +109,7 @@ namespace Data_Access_Layer
         {
             using (var context = new WebBotilleriaEntities())
             {
-                return context.Bebida.LastOrDefault().id_bebida;                
+                return context.Bebidas.LastOrDefault().id_bebida;                
             }
         }
     }

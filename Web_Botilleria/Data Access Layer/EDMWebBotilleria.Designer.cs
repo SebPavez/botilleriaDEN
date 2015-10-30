@@ -19,10 +19,11 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_Bebida_MarcaBebida", "MarcaBebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.MarcaBebida), "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.Bebidas), true)]
-[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_Bebida_TipoBebida", "TipoBebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.TipoBebida), "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.Bebidas), true)]
-[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_BodegaLocal_Bebida", "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.Bebidas), "BodegaLocal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.BodegaLocal), true)]
-[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_detalle_venta_Bebida", "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.Bebidas), "detalle_venta", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.detalle_venta), true)]
+[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_Bebida_MarcaBebida", "MarcaBebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.MarcaBebida), "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.EntidadBebida), true)]
+[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_Bebida_TipoBebida", "TipoBebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.TipoBebida), "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.EntidadBebida), true)]
+[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_detalle_venta_Bebida", "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.EntidadBebida), "detalle_venta", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.detalle_venta), true)]
+[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_DetalleBodegaLocal_Bebida", "Bebida", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.EntidadBebida), "DetalleBodegaLocal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.DetalleEnBodega), true)]
+[assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_DetalleBodegaLocal_Bodega", "Bodega", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.EntidadBodega), "DetalleBodegaLocal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.DetalleEnBodega), true)]
 [assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_detalle_venta_Venta", "Venta", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.Venta), "detalle_venta", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.detalle_venta), true)]
 [assembly: EdmRelationshipAttribute("WebBotilleriaModel", "FK_Venta_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_Access_Layer.Usuario), "Venta", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_Access_Layer.Venta), true)]
 
@@ -79,34 +80,34 @@ namespace Data_Access_Layer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Bebidas> Bebida
+        public ObjectSet<EntidadBebida> Bebidas
         {
             get
             {
-                if ((_Bebida == null))
+                if ((_Bebidas == null))
                 {
-                    _Bebida = base.CreateObjectSet<Bebidas>("Bebida");
+                    _Bebidas = base.CreateObjectSet<EntidadBebida>("Bebidas");
                 }
-                return _Bebida;
+                return _Bebidas;
             }
         }
-        private ObjectSet<Bebidas> _Bebida;
+        private ObjectSet<EntidadBebida> _Bebidas;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<BodegaLocal> BodegaLocal
+        public ObjectSet<EntidadBodega> Bodegas
         {
             get
             {
-                if ((_BodegaLocal == null))
+                if ((_Bodegas == null))
                 {
-                    _BodegaLocal = base.CreateObjectSet<BodegaLocal>("BodegaLocal");
+                    _Bodegas = base.CreateObjectSet<EntidadBodega>("Bodegas");
                 }
-                return _BodegaLocal;
+                return _Bodegas;
             }
         }
-        private ObjectSet<BodegaLocal> _BodegaLocal;
+        private ObjectSet<EntidadBodega> _Bodegas;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -127,85 +128,101 @@ namespace Data_Access_Layer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<MarcaBebida> MarcaBebida
+        public ObjectSet<DetalleEnBodega> DetalleBodegaLocals
         {
             get
             {
-                if ((_MarcaBebida == null))
+                if ((_DetalleBodegaLocals == null))
                 {
-                    _MarcaBebida = base.CreateObjectSet<MarcaBebida>("MarcaBebida");
+                    _DetalleBodegaLocals = base.CreateObjectSet<DetalleEnBodega>("DetalleBodegaLocals");
                 }
-                return _MarcaBebida;
+                return _DetalleBodegaLocals;
             }
         }
-        private ObjectSet<MarcaBebida> _MarcaBebida;
+        private ObjectSet<DetalleEnBodega> _DetalleBodegaLocals;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<TipoBebida> TipoBebida
+        public ObjectSet<MarcaBebida> MarcaBebidas
         {
             get
             {
-                if ((_TipoBebida == null))
+                if ((_MarcaBebidas == null))
                 {
-                    _TipoBebida = base.CreateObjectSet<TipoBebida>("TipoBebida");
+                    _MarcaBebidas = base.CreateObjectSet<MarcaBebida>("MarcaBebidas");
                 }
-                return _TipoBebida;
+                return _MarcaBebidas;
             }
         }
-        private ObjectSet<TipoBebida> _TipoBebida;
+        private ObjectSet<MarcaBebida> _MarcaBebidas;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Usuario> Usuario
+        public ObjectSet<TipoBebida> TipoBebidas
         {
             get
             {
-                if ((_Usuario == null))
+                if ((_TipoBebidas == null))
                 {
-                    _Usuario = base.CreateObjectSet<Usuario>("Usuario");
+                    _TipoBebidas = base.CreateObjectSet<TipoBebida>("TipoBebidas");
                 }
-                return _Usuario;
+                return _TipoBebidas;
             }
         }
-        private ObjectSet<Usuario> _Usuario;
+        private ObjectSet<TipoBebida> _TipoBebidas;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Venta> Venta
+        public ObjectSet<Usuario> Usuarios
         {
             get
             {
-                if ((_Venta == null))
+                if ((_Usuarios == null))
                 {
-                    _Venta = base.CreateObjectSet<Venta>("Venta");
+                    _Usuarios = base.CreateObjectSet<Usuario>("Usuarios");
                 }
-                return _Venta;
+                return _Usuarios;
             }
         }
-        private ObjectSet<Venta> _Venta;
+        private ObjectSet<Usuario> _Usuarios;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Venta> Ventas
+        {
+            get
+            {
+                if ((_Ventas == null))
+                {
+                    _Ventas = base.CreateObjectSet<Venta>("Ventas");
+                }
+                return _Ventas;
+            }
+        }
+        private ObjectSet<Venta> _Ventas;
 
         #endregion
 
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Bebida EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Bebidas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToBebida(Bebidas bebidas)
+        public void AddToBebidas(EntidadBebida entidadBebida)
         {
-            base.AddObject("Bebida", bebidas);
+            base.AddObject("Bebidas", entidadBebida);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the BodegaLocal EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Bodegas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToBodegaLocal(BodegaLocal bodegaLocal)
+        public void AddToBodegas(EntidadBodega entidadBodega)
         {
-            base.AddObject("BodegaLocal", bodegaLocal);
+            base.AddObject("Bodegas", entidadBodega);
         }
     
         /// <summary>
@@ -217,35 +234,43 @@ namespace Data_Access_Layer
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the MarcaBebida EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the DetalleBodegaLocals EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToMarcaBebida(MarcaBebida marcaBebida)
+        public void AddToDetalleBodegaLocals(DetalleEnBodega detalleEnBodega)
         {
-            base.AddObject("MarcaBebida", marcaBebida);
+            base.AddObject("DetalleBodegaLocals", detalleEnBodega);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the TipoBebida EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the MarcaBebidas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToTipoBebida(TipoBebida tipoBebida)
+        public void AddToMarcaBebidas(MarcaBebida marcaBebida)
         {
-            base.AddObject("TipoBebida", tipoBebida);
+            base.AddObject("MarcaBebidas", marcaBebida);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Usuario EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the TipoBebidas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUsuario(Usuario usuario)
+        public void AddToTipoBebidas(TipoBebida tipoBebida)
         {
-            base.AddObject("Usuario", usuario);
+            base.AddObject("TipoBebidas", tipoBebida);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Venta EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Usuarios EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToVenta(Venta venta)
+        public void AddToUsuarios(Usuario usuario)
         {
-            base.AddObject("Venta", venta);
+            base.AddObject("Usuarios", usuario);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Ventas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToVentas(Venta venta)
+        {
+            base.AddObject("Ventas", venta);
         }
 
         #endregion
@@ -259,15 +284,405 @@ namespace Data_Access_Layer
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="Bebidas")]
+    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="detalle_venta")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Bebidas : EntityObject
+    public partial class detalle_venta : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Bebidas object.
+        /// Create a new detalle_venta object.
+        /// </summary>
+        /// <param name="cantidad">Initial value of the cantidad property.</param>
+        /// <param name="id_bebida_fk">Initial value of the id_bebida_fk property.</param>
+        /// <param name="id_venta_fk">Initial value of the id_venta_fk property.</param>
+        public static detalle_venta Createdetalle_venta(global::System.Int32 cantidad, global::System.Int32 id_bebida_fk, global::System.Int32 id_venta_fk)
+        {
+            detalle_venta detalle_venta = new detalle_venta();
+            detalle_venta.cantidad = cantidad;
+            detalle_venta.id_bebida_fk = id_bebida_fk;
+            detalle_venta.id_venta_fk = id_venta_fk;
+            return detalle_venta;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 cantidad
+        {
+            get
+            {
+                return _cantidad;
+            }
+            set
+            {
+                if (_cantidad != value)
+                {
+                    OncantidadChanging(value);
+                    ReportPropertyChanging("cantidad");
+                    _cantidad = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("cantidad");
+                    OncantidadChanged();
+                }
+            }
+        }
+        private global::System.Int32 _cantidad;
+        partial void OncantidadChanging(global::System.Int32 value);
+        partial void OncantidadChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_bebida_fk
+        {
+            get
+            {
+                return _id_bebida_fk;
+            }
+            set
+            {
+                if (_id_bebida_fk != value)
+                {
+                    Onid_bebida_fkChanging(value);
+                    ReportPropertyChanging("id_bebida_fk");
+                    _id_bebida_fk = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_bebida_fk");
+                    Onid_bebida_fkChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_bebida_fk;
+        partial void Onid_bebida_fkChanging(global::System.Int32 value);
+        partial void Onid_bebida_fkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_venta_fk
+        {
+            get
+            {
+                return _id_venta_fk;
+            }
+            set
+            {
+                if (_id_venta_fk != value)
+                {
+                    Onid_venta_fkChanging(value);
+                    ReportPropertyChanging("id_venta_fk");
+                    _id_venta_fk = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_venta_fk");
+                    Onid_venta_fkChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_venta_fk;
+        partial void Onid_venta_fkChanging(global::System.Int32 value);
+        partial void Onid_venta_fkChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_detalle_venta_Bebida", "Bebida")]
+        public EntidadBebida Bebida
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<EntidadBebida> BebidaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_detalle_venta_Venta", "Venta")]
+        public Venta Venta
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Venta> VentaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="DetalleEnBodega")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DetalleEnBodega : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DetalleEnBodega object.
+        /// </summary>
+        /// <param name="id_bodega_fk">Initial value of the id_bodega_fk property.</param>
+        /// <param name="id_bebida_fk">Initial value of the id_bebida_fk property.</param>
+        /// <param name="cantidad">Initial value of the cantidad property.</param>
+        public static DetalleEnBodega CreateDetalleEnBodega(global::System.Int32 id_bodega_fk, global::System.Int32 id_bebida_fk, global::System.Int32 cantidad)
+        {
+            DetalleEnBodega detalleEnBodega = new DetalleEnBodega();
+            detalleEnBodega.id_bodega_fk = id_bodega_fk;
+            detalleEnBodega.id_bebida_fk = id_bebida_fk;
+            detalleEnBodega.cantidad = cantidad;
+            return detalleEnBodega;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_bodega_fk
+        {
+            get
+            {
+                return _id_bodega_fk;
+            }
+            set
+            {
+                if (_id_bodega_fk != value)
+                {
+                    Onid_bodega_fkChanging(value);
+                    ReportPropertyChanging("id_bodega_fk");
+                    _id_bodega_fk = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_bodega_fk");
+                    Onid_bodega_fkChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_bodega_fk;
+        partial void Onid_bodega_fkChanging(global::System.Int32 value);
+        partial void Onid_bodega_fkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_bebida_fk
+        {
+            get
+            {
+                return _id_bebida_fk;
+            }
+            set
+            {
+                if (_id_bebida_fk != value)
+                {
+                    Onid_bebida_fkChanging(value);
+                    ReportPropertyChanging("id_bebida_fk");
+                    _id_bebida_fk = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_bebida_fk");
+                    Onid_bebida_fkChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_bebida_fk;
+        partial void Onid_bebida_fkChanging(global::System.Int32 value);
+        partial void Onid_bebida_fkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 cantidad
+        {
+            get
+            {
+                return _cantidad;
+            }
+            set
+            {
+                if (_cantidad != value)
+                {
+                    OncantidadChanging(value);
+                    ReportPropertyChanging("cantidad");
+                    _cantidad = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("cantidad");
+                    OncantidadChanged();
+                }
+            }
+        }
+        private global::System.Int32 _cantidad;
+        partial void OncantidadChanging(global::System.Int32 value);
+        partial void OncantidadChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_DetalleBodegaLocal_Bebida", "Bebida")]
+        public EntidadBebida Bebida
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bebida", "Bebida").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bebida", "Bebida").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<EntidadBebida> BebidaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bebida", "Bebida");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EntidadBebida>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bebida", "Bebida", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_DetalleBodegaLocal_Bodega", "Bodega")]
+        public EntidadBodega Bodega
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bodega", "Bodega").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bodega", "Bodega").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<EntidadBodega> BodegaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntidadBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bodega", "Bodega");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EntidadBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bodega", "Bodega", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="EntidadBebida")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class EntidadBebida : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new EntidadBebida object.
         /// </summary>
         /// <param name="id_bebida">Initial value of the id_bebida property.</param>
         /// <param name="nombre_producto">Initial value of the nombre_producto property.</param>
@@ -278,19 +693,19 @@ namespace Data_Access_Layer
         /// <param name="es_retornable">Initial value of the es_retornable property.</param>
         /// <param name="comentario">Initial value of the comentario property.</param>
         /// <param name="marca">Initial value of the marca property.</param>
-        public static Bebidas CreateBebidas(global::System.Int32 id_bebida, global::System.String nombre_producto, global::System.Single precio, global::System.Int32 tipo, global::System.Single grados_alcohol, global::System.Single volumen_litros, global::System.Boolean es_retornable, global::System.String comentario, global::System.Int32 marca)
+        public static EntidadBebida CreateEntidadBebida(global::System.Int32 id_bebida, global::System.String nombre_producto, global::System.Single precio, global::System.Int32 tipo, global::System.Single grados_alcohol, global::System.Single volumen_litros, global::System.Boolean es_retornable, global::System.String comentario, global::System.Int32 marca)
         {
-            Bebidas bebidas = new Bebidas();
-            bebidas.id_bebida = id_bebida;
-            bebidas.nombre_producto = nombre_producto;
-            bebidas.precio = precio;
-            bebidas.tipo = tipo;
-            bebidas.grados_alcohol = grados_alcohol;
-            bebidas.volumen_litros = volumen_litros;
-            bebidas.es_retornable = es_retornable;
-            bebidas.comentario = comentario;
-            bebidas.marca = marca;
-            return bebidas;
+            EntidadBebida entidadBebida = new EntidadBebida();
+            entidadBebida.id_bebida = id_bebida;
+            entidadBebida.nombre_producto = nombre_producto;
+            entidadBebida.precio = precio;
+            entidadBebida.tipo = tipo;
+            entidadBebida.grados_alcohol = grados_alcohol;
+            entidadBebida.volumen_litros = volumen_litros;
+            entidadBebida.es_retornable = es_retornable;
+            entidadBebida.comentario = comentario;
+            entidadBebida.marca = marca;
+            return entidadBebida;
         }
 
         #endregion
@@ -603,28 +1018,6 @@ namespace Data_Access_Layer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_BodegaLocal_Bebida", "BodegaLocal")]
-        public EntityCollection<BodegaLocal> BodegaLocal
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BodegaLocal>("WebBotilleriaModel.FK_BodegaLocal_Bebida", "BodegaLocal");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BodegaLocal>("WebBotilleriaModel.FK_BodegaLocal_Bebida", "BodegaLocal", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_detalle_venta_Bebida", "detalle_venta")]
         public EntityCollection<detalle_venta> detalle_venta
         {
@@ -640,6 +1033,28 @@ namespace Data_Access_Layer
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_DetalleBodegaLocal_Bebida", "DetalleBodegaLocal")]
+        public EntityCollection<DetalleEnBodega> DetalleBodegaLocals
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DetalleEnBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bebida", "DetalleBodegaLocal");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DetalleEnBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bebida", "DetalleBodegaLocal", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -648,26 +1063,30 @@ namespace Data_Access_Layer
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="BodegaLocal")]
+    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="EntidadBodega")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class BodegaLocal : EntityObject
+    public partial class EntidadBodega : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new BodegaLocal object.
+        /// Create a new EntidadBodega object.
         /// </summary>
         /// <param name="id_bodega">Initial value of the id_bodega property.</param>
-        /// <param name="producto_fk">Initial value of the producto_fk property.</param>
-        /// <param name="cantidad">Initial value of the cantidad property.</param>
-        public static BodegaLocal CreateBodegaLocal(global::System.Int32 id_bodega, global::System.Int32 producto_fk, global::System.Int32 cantidad)
+        /// <param name="nombre_bodega">Initial value of the nombre_bodega property.</param>
+        /// <param name="direccion">Initial value of the direccion property.</param>
+        /// <param name="telefono">Initial value of the telefono property.</param>
+        /// <param name="correo_electronico">Initial value of the correo_electronico property.</param>
+        public static EntidadBodega CreateEntidadBodega(global::System.Int32 id_bodega, global::System.String nombre_bodega, global::System.String direccion, global::System.Int32 telefono, global::System.String correo_electronico)
         {
-            BodegaLocal bodegaLocal = new BodegaLocal();
-            bodegaLocal.id_bodega = id_bodega;
-            bodegaLocal.producto_fk = producto_fk;
-            bodegaLocal.cantidad = cantidad;
-            return bodegaLocal;
+            EntidadBodega entidadBodega = new EntidadBodega();
+            entidadBodega.id_bodega = id_bodega;
+            entidadBodega.nombre_bodega = nombre_bodega;
+            entidadBodega.direccion = direccion;
+            entidadBodega.telefono = telefono;
+            entidadBodega.correo_electronico = correo_electronico;
+            return entidadBodega;
         }
 
         #endregion
@@ -706,48 +1125,96 @@ namespace Data_Access_Layer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 producto_fk
+        public global::System.String nombre_bodega
         {
             get
             {
-                return _producto_fk;
+                return _nombre_bodega;
             }
             set
             {
-                Onproducto_fkChanging(value);
-                ReportPropertyChanging("producto_fk");
-                _producto_fk = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("producto_fk");
-                Onproducto_fkChanged();
+                Onnombre_bodegaChanging(value);
+                ReportPropertyChanging("nombre_bodega");
+                _nombre_bodega = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("nombre_bodega");
+                Onnombre_bodegaChanged();
             }
         }
-        private global::System.Int32 _producto_fk;
-        partial void Onproducto_fkChanging(global::System.Int32 value);
-        partial void Onproducto_fkChanged();
+        private global::System.String _nombre_bodega;
+        partial void Onnombre_bodegaChanging(global::System.String value);
+        partial void Onnombre_bodegaChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 cantidad
+        public global::System.String direccion
         {
             get
             {
-                return _cantidad;
+                return _direccion;
             }
             set
             {
-                OncantidadChanging(value);
-                ReportPropertyChanging("cantidad");
-                _cantidad = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("cantidad");
-                OncantidadChanged();
+                OndireccionChanging(value);
+                ReportPropertyChanging("direccion");
+                _direccion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("direccion");
+                OndireccionChanged();
             }
         }
-        private global::System.Int32 _cantidad;
-        partial void OncantidadChanging(global::System.Int32 value);
-        partial void OncantidadChanged();
+        private global::System.String _direccion;
+        partial void OndireccionChanging(global::System.String value);
+        partial void OndireccionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 telefono
+        {
+            get
+            {
+                return _telefono;
+            }
+            set
+            {
+                OntelefonoChanging(value);
+                ReportPropertyChanging("telefono");
+                _telefono = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("telefono");
+                OntelefonoChanged();
+            }
+        }
+        private global::System.Int32 _telefono;
+        partial void OntelefonoChanging(global::System.Int32 value);
+        partial void OntelefonoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String correo_electronico
+        {
+            get
+            {
+                return _correo_electronico;
+            }
+            set
+            {
+                Oncorreo_electronicoChanging(value);
+                ReportPropertyChanging("correo_electronico");
+                _correo_electronico = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("correo_electronico");
+                Oncorreo_electronicoChanged();
+            }
+        }
+        private global::System.String _correo_electronico;
+        partial void Oncorreo_electronicoChanging(global::System.String value);
+        partial void Oncorreo_electronicoChanged();
 
         #endregion
 
@@ -760,229 +1227,18 @@ namespace Data_Access_Layer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_BodegaLocal_Bebida", "Bebida")]
-        public Bebidas Bebida
+        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_DetalleBodegaLocal_Bodega", "DetalleBodegaLocal")]
+        public EntityCollection<DetalleEnBodega> DetalleBodegaLocals
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Bebidas>("WebBotilleriaModel.FK_BodegaLocal_Bebida", "Bebida").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Bebidas>("WebBotilleriaModel.FK_BodegaLocal_Bebida", "Bebida").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Bebidas> BebidaReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Bebidas>("WebBotilleriaModel.FK_BodegaLocal_Bebida", "Bebida");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DetalleEnBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bodega", "DetalleBodegaLocal");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Bebidas>("WebBotilleriaModel.FK_BodegaLocal_Bebida", "Bebida", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WebBotilleriaModel", Name="detalle_venta")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class detalle_venta : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new detalle_venta object.
-        /// </summary>
-        /// <param name="cantidad">Initial value of the cantidad property.</param>
-        /// <param name="id_bebida_fk">Initial value of the id_bebida_fk property.</param>
-        /// <param name="id_venta_fk">Initial value of the id_venta_fk property.</param>
-        public static detalle_venta Createdetalle_venta(global::System.Int32 cantidad, global::System.Int32 id_bebida_fk, global::System.Int32 id_venta_fk)
-        {
-            detalle_venta detalle_venta = new detalle_venta();
-            detalle_venta.cantidad = cantidad;
-            detalle_venta.id_bebida_fk = id_bebida_fk;
-            detalle_venta.id_venta_fk = id_venta_fk;
-            return detalle_venta;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 cantidad
-        {
-            get
-            {
-                return _cantidad;
-            }
-            set
-            {
-                if (_cantidad != value)
-                {
-                    OncantidadChanging(value);
-                    ReportPropertyChanging("cantidad");
-                    _cantidad = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("cantidad");
-                    OncantidadChanged();
-                }
-            }
-        }
-        private global::System.Int32 _cantidad;
-        partial void OncantidadChanging(global::System.Int32 value);
-        partial void OncantidadChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id_bebida_fk
-        {
-            get
-            {
-                return _id_bebida_fk;
-            }
-            set
-            {
-                if (_id_bebida_fk != value)
-                {
-                    Onid_bebida_fkChanging(value);
-                    ReportPropertyChanging("id_bebida_fk");
-                    _id_bebida_fk = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_bebida_fk");
-                    Onid_bebida_fkChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id_bebida_fk;
-        partial void Onid_bebida_fkChanging(global::System.Int32 value);
-        partial void Onid_bebida_fkChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id_venta_fk
-        {
-            get
-            {
-                return _id_venta_fk;
-            }
-            set
-            {
-                if (_id_venta_fk != value)
-                {
-                    Onid_venta_fkChanging(value);
-                    ReportPropertyChanging("id_venta_fk");
-                    _id_venta_fk = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_venta_fk");
-                    Onid_venta_fkChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id_venta_fk;
-        partial void Onid_venta_fkChanging(global::System.Int32 value);
-        partial void Onid_venta_fkChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_detalle_venta_Bebida", "Bebida")]
-        public Bebidas Bebida
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Bebidas>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Bebidas>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Bebidas> BebidaReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Bebidas>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Bebidas>("WebBotilleriaModel.FK_detalle_venta_Bebida", "Bebida", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_detalle_venta_Venta", "Venta")]
-        public Venta Venta
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Venta> VentaReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Venta>("WebBotilleriaModel.FK_detalle_venta_Venta", "Venta", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DetalleEnBodega>("WebBotilleriaModel.FK_DetalleBodegaLocal_Bodega", "DetalleBodegaLocal", value);
                 }
             }
         }
@@ -1081,17 +1337,17 @@ namespace Data_Access_Layer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_Bebida_MarcaBebida", "Bebida")]
-        public EntityCollection<Bebidas> Bebida
+        public EntityCollection<EntidadBebida> Bebidas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Bebidas>("WebBotilleriaModel.FK_Bebida_MarcaBebida", "Bebida");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<EntidadBebida>("WebBotilleriaModel.FK_Bebida_MarcaBebida", "Bebida");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Bebidas>("WebBotilleriaModel.FK_Bebida_MarcaBebida", "Bebida", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<EntidadBebida>("WebBotilleriaModel.FK_Bebida_MarcaBebida", "Bebida", value);
                 }
             }
         }
@@ -1190,17 +1446,17 @@ namespace Data_Access_Layer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_Bebida_TipoBebida", "Bebida")]
-        public EntityCollection<Bebidas> Bebida
+        public EntityCollection<EntidadBebida> Bebidas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Bebidas>("WebBotilleriaModel.FK_Bebida_TipoBebida", "Bebida");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<EntidadBebida>("WebBotilleriaModel.FK_Bebida_TipoBebida", "Bebida");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Bebidas>("WebBotilleriaModel.FK_Bebida_TipoBebida", "Bebida", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<EntidadBebida>("WebBotilleriaModel.FK_Bebida_TipoBebida", "Bebida", value);
                 }
             }
         }
@@ -1351,7 +1607,7 @@ namespace Data_Access_Layer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("WebBotilleriaModel", "FK_Venta_Usuario", "Venta")]
-        public EntityCollection<Venta> Venta
+        public EntityCollection<Venta> Ventas
         {
             get
             {

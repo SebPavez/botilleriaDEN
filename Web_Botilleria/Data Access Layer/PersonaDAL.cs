@@ -6,13 +6,13 @@ using BibliotecaClases;
 
 namespace Data_Access_Layer
 {
-    class PersonaDAL
+    public class PersonaDAL
     {
         public static Boolean BuscarUsername(string strUsername)
         {
             bool blnExiste = false;
             var context = new WebBotilleriaEntities();
-            List<Usuario> listaPersonas = context.Usuario.ToList<Usuario>(); 
+            List<Usuario> listaPersonas = context.Usuarios.ToList<Usuario>(); 
             foreach (var item in listaPersonas)
             {
                 if (item.nombre_usuario.Equals(strUsername))
@@ -30,7 +30,7 @@ namespace Data_Access_Layer
             {
                 using (var context = new WebBotilleriaEntities())
                 {
-                    context.Usuario.AddObject(new Usuario()
+                    context.Usuarios.AddObject(new Usuario()
                     {
                         id_usuario = ObtenerIDUltimaPersona() + 1,
                         nombre_usuario = nuevaPersona.NombreUsuario,
@@ -49,7 +49,7 @@ namespace Data_Access_Layer
         {
             using (var context = new WebBotilleriaEntities())
             {
-                return context.Usuario.LastOrDefault().id_usuario;                
+                return context.Usuarios.LastOrDefault().id_usuario;                
             }
         }
     }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BodegaDAL.cs" />
     <Compile Include="ConsultasDAL.cs" />
     <Compile Include="EDMWebBotilleria.Designer.cs">
       <AutoGen>True</AutoGen>

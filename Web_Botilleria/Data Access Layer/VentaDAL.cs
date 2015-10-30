@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Data_Access_Layer
 {
-    class VentaDAL
+    public class VentaDAL
     {
         //public Boolean GenerarVenta()
         //{
