@@ -30,13 +30,7 @@ namespace Data_Access_Layer
             {
                 using (var context = new WebBotilleriaEntities())
                 {
-                    context.Usuarios.AddObject(new Usuario()
-                    {
-                        id_usuario = ObtenerIDUltimaPersona() + 1,
-                        nombre_usuario = nuevaPersona.NombreUsuario,
-                        contrasenja_usuario = nuevaPersona.Password,
-                        esAdministrador = nuevaPersona.Administrador
-                    });
+                    context.Usuarios.AddObject(Usuario.CreateUsuario(ObtenerIDUltimaPersona()+1,nuevaPersona.NombreUsuario,nuevaPersona.Password,nuevaPersona.Administrador));
                     context.SaveChanges();
                     return true;
                 }
