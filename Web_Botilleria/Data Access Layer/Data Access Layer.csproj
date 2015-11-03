@@ -43,11 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BodegaDAL.cs" />
     <Compile Include="ConsultasDAL.cs" />
-    <Compile Include="EDMBotilleria.Designer.cs">
+    <Compile Include="EDMWebBotilleria.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EDMBotilleria.edmx</DependentUpon>
+      <DependentUpon>EDMWebBotilleria.edmx</DependentUpon>
     </Compile>
     <Compile Include="PersonaDAL.cs" />
     <Compile Include="ProductoDAL.cs" />
@@ -55,19 +56,19 @@
     <Compile Include="VentaDAL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="EDMBotilleria.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EDMBotilleria.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj">
       <Project>{C532FBAF-2005-4A15-B03F-1FB81A2F55BA}</Project>
       <Name>BibliotecaDeClases</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EDMWebBotilleria.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EDMWebBotilleria.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
