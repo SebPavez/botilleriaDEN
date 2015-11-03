@@ -8,7 +8,7 @@ using BibliotecaClases;
 namespace Data_Access_Layer
 {
     public class ProductoDAL
-    {                
+    {
         public static Boolean ActualizarStock(int actualizacion, int idBodega, int idProducto)
         {
             try
@@ -29,7 +29,7 @@ namespace Data_Access_Layer
                 }
                 else
                 {
-                    if (actualizacion >= 0 && context.Bodegas.Where(c => c.id_bodega == idBodega).FirstOrDefault()!=null)
+                    if (actualizacion >= 0 && context.Bodegas.Where(c => c.id_bodega == idBodega).FirstOrDefault() != null)
                     {
                         context.DetalleBodegaLocals.AddObject(DetalleEnBodega.CreateDetalleEnBodega(idBodega, idProducto, actualizacion));
                         context.SaveChanges();
@@ -42,7 +42,7 @@ namespace Data_Access_Layer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString()); 
+                Console.WriteLine(e.ToString());
                 return false;
             }
         }
@@ -62,25 +62,26 @@ namespace Data_Access_Layer
                     return false;
             }
         }
-                
+
         public static Boolean ingresarBebida(Bebida nuevoProducto)
         {
             if (!BuscarNombreBebida(nuevoProducto.Nombre))
             {
                 using (var context = new WebBotilleriaEntities())
                 {
-                    context.Bebidas.AddObject(new EntidadBebida()
-                        {
-                            id_bebida = ObtenerIDUltimaBebida() + 1,
-                            nombre_producto = nuevoProducto.Nombre,
-                            marca = (int)nuevoProducto.Marca,
-                            volumen_litros = (float)nuevoProducto.VolumenLitros,
-                            precio = (float)nuevoProducto.Precio,
-                            tipo = (int)nuevoProducto.TipoProducto,
-                            grados_alcohol = (float)nuevoProducto.GradosDeAlcohol,
-                            comentario = nuevoProducto.Comentario,
-                            es_retornable = nuevoProducto.Retornable
-                        });
+                    EntidadBebida bebida = new EntidadBebida()
+                    {
+                        id_bebida = ObtenerIDUltimaBebida() + 1,
+                        nombre_producto = nuevoProducto.Nombre,
+                        marca = (int)nuevoProducto.Marca,
+                        volumen_litros = (float)nuevoProducto.VolumenLitros,
+                        precio = (float)nuevoProducto.Precio,
+                        tipo = (int)nuevoProducto.TipoProducto,
+                        grados_alcohol = (float)nuevoProducto.GradosDeAlcohol,
+                        comentario = nuevoProducto.Comentario,
+                        es_retornable = nuevoProducto.Retornable
+                    };
+                    context.Bebidas.AddObject(bebida);
                     context.SaveChanges();
                     return true;
                 }
@@ -107,9 +108,17 @@ namespace Data_Access_Layer
 
         public static int ObtenerIDUltimaBebida()
         {
-            using (var context = new WebBotilleriaEntities())
+            using (var context = new WebBotilleriaEntities("name=WebBotilleriaEntities"))
             {
-                return context.Bebidas.LastOrDefault().id_bebida;                
+                var conjunto = context.Bebidas.ToList<EntidadBebida>().LastOrDefault();
+                if (conjunto == null)
+                    return 0;
+                else
+                {
+                    int id = conjunto.id_bebida;
+                    return id;
+                }
+
             }
         }
     }

@@ -8,16 +8,21 @@ namespace Data_Access_Layer
 {
     public class PersonaDAL
     {
-        public static Boolean BuscarUsername(string strUsername)
+        public static Boolean BuscarUsername(string strUsername, out Persona instanciaPersona)
         {
             bool blnExiste = false;
+            instanciaPersona = new Persona();
             var context = new WebBotilleriaEntities();
-            List<Usuario> listaPersonas = context.Usuarios.ToList<Usuario>(); 
+            List<Usuario> listaPersonas = context.Usuarios.ToList<Usuario>();
             foreach (var item in listaPersonas)
             {
                 if (item.nombre_usuario.Equals(strUsername))
                 {
                     blnExiste = true;
+                    instanciaPersona.ID = item.id_usuario;
+                    instanciaPersona.NombreUsuario = item.nombre_usuario;
+                    instanciaPersona.Password = item.contrasenja_usuario;
+                    instanciaPersona.Administrador = item.esAdministrador;
                     return blnExiste;
                 }
             }
@@ -26,11 +31,12 @@ namespace Data_Access_Layer
 
         public static Boolean GuardarPersona(Persona nuevaPersona)
         {
-            if (!BuscarUsername(nuevaPersona.NombreUsuario))
+            Persona instancia = new Persona();
+            if (!BuscarUsername(nuevaPersona.NombreUsuario, out instancia))
             {
                 using (var context = new WebBotilleriaEntities())
                 {
-                    context.Usuarios.AddObject(Usuario.CreateUsuario(ObtenerIDUltimaPersona()+1,nuevaPersona.NombreUsuario,nuevaPersona.Password,nuevaPersona.Administrador));
+                    context.Usuarios.AddObject(Usuario.CreateUsuario(ObtenerIDUltimaPersona() + 1, nuevaPersona.NombreUsuario, nuevaPersona.Password, nuevaPersona.Administrador));
                     context.SaveChanges();
                     return true;
                 }
@@ -39,11 +45,20 @@ namespace Data_Access_Layer
                 return false;
         }
 
-        public static int ObtenerIDUltimaPersona() 
+        public static int ObtenerIDUltimaPersona()
         {
             using (var context = new WebBotilleriaEntities())
             {
-                return context.Usuarios.LastOrDefault().id_usuario;                
+                var conjunto = context.Usuarios.ToList<Usuario>().LastOrDefault<Usuario>();
+                if (conjunto == null)
+                    return 0;
+                else
+                {
+                    int id = conjunto.id_usuario;
+                    return id;
+                }
+
+
             }
         }
     }
