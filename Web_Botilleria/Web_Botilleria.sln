@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaDeClases", "Bibli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Access Layer", "Data Access Layer\Data Access Layer.csproj", "{D384B554-4AFE-48F9-A01B-C81536E82C0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_Botilleria", "..\..\..\..\Desktop\botilleriaDEN2015-queries\Web_Botilleria\Web_Botilleria\Web_Botilleria.csproj", "{608B172C-E00E-4E5A-9B8B-708661523915}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_Botilleria", "Web_Botilleria\Web_Botilleria.csproj", "{608B172C-E00E-4E5A-9B8B-708661523915}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
