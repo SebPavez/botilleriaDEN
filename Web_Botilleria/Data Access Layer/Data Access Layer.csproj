@@ -57,12 +57,6 @@
     <Compile Include="VentaDAL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj">
-      <Project>{C532FBAF-2005-4A15-B03F-1FB81A2F55BA}</Project>
-      <Name>BibliotecaDeClases</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="EDMWebBotilleria.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EDMWebBotilleria.Designer.cs</LastGenOutput>
@@ -70,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\visual studio 2010\Projects\BibliotecaDeClases\BibliotecaDeClases.csproj">
+      <Project>{3C48A173-AF9B-4DF2-BD6A-EDCEF93B2DDF}</Project>
+      <Name>BibliotecaDeClases</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
