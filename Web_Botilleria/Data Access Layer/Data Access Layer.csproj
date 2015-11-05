@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EDMWebBotilleria.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MarcaTipoDAL.cs" />
     <Compile Include="PersonaDAL.cs" />
     <Compile Include="ProductoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

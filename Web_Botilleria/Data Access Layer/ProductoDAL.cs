@@ -9,6 +9,7 @@ namespace Data_Access_Layer
 {
     public class ProductoDAL
     {
+        
         public static Boolean ActualizarStock(int actualizacion, int idBodega, int idProducto)
         {
             try
